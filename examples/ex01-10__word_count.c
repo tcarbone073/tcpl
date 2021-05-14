@@ -23,6 +23,7 @@ int main(void) {
             ++nw;
         }
     }
+    printf("lines\twords\tcharacters\n");
     printf("%d\t%d\t%d\n", nl, nw, nc);
 
     return 0;
