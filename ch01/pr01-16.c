@@ -12,24 +12,31 @@ int get_line(char line[], int maxline);
 
 int main(void) {
 
-    int len;
-    int c, i;
-    char line[MAXLINE];
+	int len;
+	int c, i;
+	char line[MAXLINE];
+
+	for (i=0; i<MAXLINE-1; ++i)
+		line[i]=0;
     
     while ((len = get_line(line, MAXLINE)) > 0)
-        printf("%d - %s", len, line);
-        if (len > LINE_LEN)
+		if (len > LINE_LEN) {
             for (i = 0; i < LINE_LEN_SHOW - 1; ++i)
-                printf("%s", c=getchar());
+                printf("%c", line[i]);
+			printf("\n");
+			}
+		else
+			printf("<Line not longer than %d characters.>\n", LINE_LEN);
     return 0;
 }
 
-/* read a line into `s`, return length of line */
 int get_line(char s[], int lim) {
+	/* Read a line of characters into `s`. If a `\n` is encountered, apend the
+	 * null character and return length of the line, `i`. */
 
     int c, i;
 
-    for (i = 0; i < lim - 1 && (c=getchar()) != EOF && c != '\n'; ++i)
+    for (i=0; i<lim-1 && (c=getchar()) != EOF && c != '\n'; ++i)
         s[i] = c;
     if (c == '\n') {
         s[i] = c;
